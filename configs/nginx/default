@@ -1,0 +1,38 @@
+server {
+    listen  80;
+
+    root /var/www/public;
+    index index.html index.htm index.php;
+
+    server_name localhost;
+
+    access_log /var/log/nginx/localhost.com-access.log;
+    error_log  /var/log/nginx/localhost.com-error.log error;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.html /index.php?$query_string;
+    }
+
+    location = /favicon.ico { log_not_found off; access_log off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    # pass the PHP scripts to php7-fpm
+    location ~ index.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        include fastcgi.conf;
+        fastcgi_param LARA_ENV local; # Environment variable for Laravel
+        fastcgi_param HTTPS off;
+    }
+
+    # Deny . (dot) file access: .git .svn etc.
+    location ~ /\. {
+        deny all;
+    }
+}

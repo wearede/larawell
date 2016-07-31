@@ -1,0 +1,10 @@
+larawell:
+  build: ./
+  restart: always
+  ports:
+    - "80:80"
+  volumes:
+    - ./app:/var/www
+    #- ./mysql:/var/lib/mysql
+  environment:
+    MARIA_ROOT_PASSWORD: secret 
