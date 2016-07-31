@@ -1,5 +1,5 @@
 # larawell
-Monolithic docker container to run your Laravel apps: MariaDB/Nginx/PHP7.0-Fpm
+Monolithic docker container to run your Laravel apps: MariaDB/Redis/Nginx/PHP7.0-Fpm
 
 #### Why monolothic?
 
