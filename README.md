@@ -6,6 +6,7 @@ Monolithic docker container to run your Laravel apps: MariaDB/Nginx/PHP7.0-Fpm
 #### Includes
 
 + MariaDB
++ Redis
 + Nginx
 + PHP7.0-Fpm
 + NodeJs
