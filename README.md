@@ -49,3 +49,6 @@ larawell:
     MARIA_ROOT_PASSWORD: secret
 ```
 
+As project develops, the plan is to consolidate all the options in this file.
+
+To build, run and daemonize you can `docker-compose up -d --build`
