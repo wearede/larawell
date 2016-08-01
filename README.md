@@ -2,6 +2,7 @@
 Monolithic docker container to run your Laravel apps: MariaDB/Redis/Nginx/PHP7.0-Fpm
 
 #### Why monolothic?
+The Docker developers advocate the philosophy of running a single **logical** service per container. A logical service can consist of multiple OS processes.
 
 #### Includes
 
