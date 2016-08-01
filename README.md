@@ -34,6 +34,18 @@ Container is bundled with 7 helper bash scripts. Few of them are required for co
 
 #### Usage
 
+larawell includes docker-compose.yml
 
-
+```yml
+larawell:
+  build: ./
+  restart: always
+  ports:
+    - "80:80"
+  volumes:
+    - ./app:/var/www
+    #- ./mysql:/var/lib/mysql
+  environment:
+    MARIA_ROOT_PASSWORD: secret
+```
 
