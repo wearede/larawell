@@ -1,0 +1,1 @@
+docker exec -it $(docker-compose ps -q) bash -c "/usr/bin/php /var/www/artisan $@"

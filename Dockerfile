@@ -2,8 +2,6 @@
 # a list of version numbers.
 FROM phusion/baseimage:0.9.19
 
-ENV TZ=Asia/Tbilisi
-
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
@@ -15,8 +13,9 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
     mariadb-server mariadb-client \
     nginx \
     nodejs npm \
-    php7.0-cli php7.0-fpm php7.0-gd php7.0-mcrypt php7.0-mbstring php7.0-mysql php7.0-curl \
-    redis-server
+    php7.0-cli php7.0-fpm php7.0-gd php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-zip php7.0-mysql php7.0-curl \
+    redis-server \
+    git
 
 # This is a fix for
 # ERROR: unable to bind listening socket for address '/run/php/php7.0-fpm.sock': No such file or directory (2)
@@ -24,22 +23,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
 RUN service php7.0-fpm start
 
 #
-ADD configs/nginx/default /etc/nginx/sites-available/default
-
-RUN mkdir /etc/service/nginx
-ADD runit/nginx.sh /etc/service/nginx/run
-
-RUN mkdir /etc/service/php-fpm
-ADD runit/php-fpm.sh /etc/service/php-fpm/run
-
-RUN mkdir /etc/service/redis-server
-ADD runit/redis-server.sh /etc/service/redis-server/run
-
-RUN mkdir /etc/service/mariadb
-ADD runit/mariadb.sh /etc/service/mariadb/run
-
-RUN mkdir /etc/service/queue
-ADD runit/queue.sh /etc/service/queue/run
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 #
 RUN mkdir -p /etc/my_init.d

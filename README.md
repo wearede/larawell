@@ -15,6 +15,7 @@ Larawell uses [phusion/baseimage](https://github.com/phusion/baseimage-docker#wa
 + npm
 + schedule:run
 + queue:work
++ composer
 
 Both schedule:run (cron) and queue:work (service) are included and running properly by default. There is no other docker container for Laravel that offers working cron or queue, so if you plan to run full featured Laravel app this should be your container of choice.
 
@@ -24,31 +25,28 @@ Note: Larawell uses `queue:work --daemon` instead of `queue:listen` as later was
 
 Container is bundled with 7 helper bash scripts. Few of them are required for correct functioning and some can be enabled on user discretion.
 
-+ 01_mariadb_initialize.sh - 
-+ 02_mariadb_secure.sh - 
-+ 03_mariadb_prepare_database.sh - 
-+ 04_laravel_install.sh - 
-+ 05_laravel_migrate.sh - 
-+ 06_laravel_seed.sh - 
-+ 07_mariadb_import_dump.sh - 
++ 01_mariadb_initialize.sh -
++ 02_mariadb_secure.sh -
++ 03_mariadb_prepare_database.sh -
++ 04_laravel_install.sh -
++ 05_laravel_migrate.sh -
++ 06_laravel_seed.sh -
++ 07_mariadb_import_dump.sh -
 
 #### Usage
 
 larawell includes docker-compose.yml
 
 ```yml
-larawell:
-  build: ./
-  restart: always
-  ports:
-    - "80:80"
-  volumes:
-    - ./app:/var/www
-    #- ./mysql:/var/lib/mysql
-  environment:
-    MARIA_ROOT_PASSWORD: secret
+
 ```
 
 As project develops, the plan is to consolidate all the options in this file.
 
+#### Quick start
+
 To build, run and daemonize you can `docker-compose up -d --build`
+
+#### pArtisan
+
+To run artisan commands from host you can use `partisan` tool inside larawell root

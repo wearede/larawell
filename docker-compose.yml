@@ -6,5 +6,12 @@ larawell:
   volumes:
     - ./app:/var/www
     #- ./mysql:/var/lib/mysql
+    - ./configs/nginx/default:/etc/nginx/sites-available/default
+    - ./runit/nginx.sh:/etc/service/nginx/run
+    - ./runit/php-fpm.sh:/etc/service/php-fpm/run
+    #- ./runit/redis-server.sh:/etc/service/redis-server/run
+    - ./runit/mariadb.sh:/etc/service/mariadb/run
+    #- ./runit/queue.sh:/etc/service/queue/run
   environment:
-    MARIA_ROOT_PASSWORD: secret 
+    MARIA_ROOT_PASSWORD: secret
+    TZ: Asia/Tbilisi
