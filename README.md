@@ -33,20 +33,12 @@ Container is bundled with 7 helper bash scripts. Few of them are required for co
 + 06_laravel_seed.sh -
 + 07_mariadb_import_dump.sh -
 
-#### Usage
-
-larawell includes docker-compose.yml
-
-```yml
-
-```
-
-As project develops, the plan is to consolidate all the options in this file.
-
 #### Quick start
 
-To build, run and daemonize you can `docker-compose up -d --build`
+To build, run and daemonize you can `docker-compose up -d --build`.
+
+Have a look inside `docker-compose.yml` you can enable redis and queue there, disabled by default.
 
 #### pArtisan
 
-To run artisan commands from host you can use `partisan` tool inside larawell root
+To run artisan commands from host you can use `partisan` tool inside larawell root.
